@@ -24,7 +24,7 @@ class HoldingsIndexer
 					cdb[bib_doc[:id]] = JSON.generate(bib_doc[:holdings])
 					bib_doc = {id: row[0], holdings: {}}
 				end
-				bib_doc[:holdings][row[1]] = row[2]
+				bib_doc[:holdings][row[1]] = [row[2]]
 			end
 			if bib_doc
 				cdb[bib_doc.delete(:id)] = JSON.generate(bib_doc[:holdings])

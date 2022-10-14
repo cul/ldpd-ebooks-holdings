@@ -30,7 +30,7 @@ RSpec.describe HoldingsApi do
         expect(last_response.status).to eq 200
         response_json = JSON.load(last_response.body)
         expect(response_json).to include({'id' => bib_id})
-        expect(response_json['holdings']).to include({'test' => expected_url})
+        expect(response_json['holdings']).to include({'test' => [expected_url]})
       end
     end
     context "has no holdings" do
