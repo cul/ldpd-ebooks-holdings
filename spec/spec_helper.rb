@@ -18,6 +18,7 @@ require 'rspec'
 require 'rack/test'
 require File.expand_path("../../config/environment", __FILE__)
 require File.expand_path("../../holdings_api", __FILE__)
+require File.expand_path("../../holdings_indexer", __FILE__)
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

@@ -2,4 +2,6 @@
 
 # Ignore the cdb datastore
 /db/*.cdb
+# Ignore the sqlite datastore
+/db/*.sqlite3
 /tmp

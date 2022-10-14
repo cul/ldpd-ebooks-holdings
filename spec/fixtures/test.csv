@@ -1,0 +1,3 @@
+bib_id,provider,url
+12345,test,http://localhost/earlier-id
+12345,test,http://localhost/well-known-id

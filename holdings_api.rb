@@ -1,4 +1,6 @@
 require 'libcdb'
+require 'json'
+require 'sinatra'
 
 class HoldingsApi < Sinatra::Base
 	configure do
@@ -11,7 +13,25 @@ class HoldingsApi < Sinatra::Base
 		@datastore ||= LibCDB::CDB.open(settings.datastore_path)
 	end
 
-	get '/holdings/:bib_id.json', provides: 'json' do
-		datastore[params[:bib_id]] || JSON.generate({ id: params[:bib_id], holdings: {} })
+	def success_headers
+		@headers ||= {
+			'Access-Control-Allow-Methods' => 'GET, OPTIONS',
+			'Access-Control-Allow-Origin' => '*',
+			'Content-Type' => 'application/json'
+		}.freeze
+	end
+
+	get '/' do
+		404
+	end
+
+	get '/holdings' do
+		400
+	end
+
+	get '/holdings/:bib_id.json' do
+		holdings = {}
+		datastore[params[:bib_id]]&.tap { |data| holdings.merge!(JSON.load(data)) }
+		[200, success_headers, JSON.generate({ id: params[:bib_id], holdings: holdings })]
 	end
 end
