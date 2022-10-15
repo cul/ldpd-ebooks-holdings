@@ -32,6 +32,8 @@ class HoldingsApi < Sinatra::Base
 	get '/holdings/:bib_id.json' do
 		holdings = {}
 		datastore[params[:bib_id]]&.tap { |data| holdings.merge!(JSON.load(data)) }
+		# CLIO API expects a simplye key
+		holdings['simplye'] ||= [] unless holdings.empty?
 		[200, success_headers, JSON.generate({ id: params[:bib_id], holdings: holdings })]
 	end
 end
