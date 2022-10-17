@@ -3,10 +3,15 @@ require 'csv'
 require 'sqlite3'
 
 class HoldingsIndexer
-	def self.update(db_path, csv_path = nil)
+	def self.init_db(db_path)
 		db = SQLite3::Database.new db_path
 		schema_path = File.expand_path("../config/schema.sql", __FILE__)
 		db.execute File.read(schema_path)
+		db
+	end
+
+	def self.update(db_path, csv_path = nil)
+		db = init_db(db_path)
 		if csv_path
 			CSV.open(csv_path, "r", headers: true) do |csv|
 				csv.each do |row|
@@ -16,6 +21,11 @@ class HoldingsIndexer
 				end
 			end
 		end
+	end
+
+	# This method is not called until TinyCDB index is available
+	def self.reindex(db_path)
+		db = init_db(db_path)
 		LibCDB::CDB.open(HoldingsApi.settings.datastore_path, 'w') do | cdb |
 			bib_doc = nil
 			db.execute( "SELECT bib_id, provider, url FROM ebook_links ORDER BY bib_id" ) do |row|

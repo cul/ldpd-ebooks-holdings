@@ -23,7 +23,7 @@ RSpec.describe HoldingsApi do
       let(:bib_id) { '12345' }
       let(:expected_url) { 'http://localhost/well-known-id' }
       before do
-        HoldingsIndexer.update(":memory:", csv_path)
+        HoldingsIndexer.update(HoldingsApi.settings.datastore_path, csv_path)
       end
       it "returns holdings" do
         get "/holdings/#{bib_id}.json"
