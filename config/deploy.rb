@@ -11,7 +11,7 @@ set :remote_user, "#{fetch(:instance)}serv"
 set :deploy_to,   "/opt/passenger/#{fetch(:instance)}/#{fetch(:deploy_name)}"
 
 # Default value for :linked_dirs is []
-append  :linked_dirs, "db"
+set :linked_dirs, fetch(:linked_dirs, []).push('tmp/pids', 'db', 'public/static-feeds')
 
 set :passenger_restart_with_touch, true
 
