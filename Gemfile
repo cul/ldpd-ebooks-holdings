@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-# gem "libcdb-ruby"
+gem "libcdb-ruby"
 gem "rack"
 gem "rack-env"
 gem "rake"

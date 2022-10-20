@@ -1,4 +1,4 @@
-require 'sqlite3'
+require 'libcdb'
 require 'json'
 require 'sinatra'
 
@@ -6,7 +6,7 @@ class HoldingsApi < Sinatra::Base
 	configure do
 		db_dir = File.expand_path("../db", __FILE__)
 		FileUtils.mkdir_p(db_dir)
-		set :datastore_path, File.join(db_dir, "#{ENV['RACK_ENV'] || 'development'}.sqlite3")
+		set :datastore_path, File.join(db_dir, "#{ENV['RACK_ENV'] || 'development'}.cdb")
 	end
 
 	def tinycdb_datastore
@@ -18,7 +18,7 @@ class HoldingsApi < Sinatra::Base
 	end
 
 	def datastore
-		@datastore ||= sqlite_datastore
+		@datastore ||= tinycdb_datastore
 	end
 
 	def success_headers
@@ -44,6 +44,8 @@ class HoldingsApi < Sinatra::Base
 		holdings['simplye'] ||= [] unless holdings.empty?
 		[200, success_headers, JSON.generate({ id: params[:bib_id], holdings: holdings })]
 	end
+
+	# this is a datastore shim to SQLite when CDB is unavailable 
 	class SQLiteDatastore
 		attr_reader :db
 		def initialize(db_path)
