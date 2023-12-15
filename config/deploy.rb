@@ -5,10 +5,11 @@ set :instance, 'ldpd'
 set :application, "ebooks"
 set :repo_url, 'git@github.com:cul/ldpd-ebooks-holdings.git'
 set :deploy_name, "#{fetch(:application)}_#{fetch(:stage)}"
+set :rvm_custom_path, '~/.rvm-alma8'
 set :rvm_ruby_version, fetch(:deploy_name)
-set :remote_user, "#{fetch(:instance)}serv"
+set :remote_user, "renserv"
 
-set :deploy_to,   "/opt/passenger/#{fetch(:instance)}/#{fetch(:deploy_name)}"
+set :deploy_to,   "/opt/passenger/#{fetch(:deploy_name)}"
 
 # Default value for :linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('tmp/pids', 'db', 'public/static-feeds')
