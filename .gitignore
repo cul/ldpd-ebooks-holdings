@@ -5,3 +5,9 @@
 # Ignore the sqlite datastore
 /db/*.sqlite3
 /tmp
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep

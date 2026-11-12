@@ -4,12 +4,11 @@ gem "rack"
 gem "rack-env"
 gem "rake"
 gem "sinatra"
-gem "sqlite3"
+gem "sqlite3", '~> 2.9'
 group :development do
-  gem 'capistrano', '~> 3.17.1', require: false
+  gem 'capistrano', '~> 3.19.2', require: false
   gem 'capistrano-cul', require: false
   gem 'capistrano-passenger', '~> 0.1', require: false
-  gem 'capistrano-rvm', '~> 0.1', require: false
   gem 'capistrano-bundler', '~> 2.0'
 end
 group :test do
