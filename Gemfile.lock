@@ -69,6 +69,8 @@ GEM
       tilt (~> 2.0)
     sqlite3 (2.10.2)
       mini_portile2 (~> 2.8.0)
+    sqlite3 (2.10.2-arm64-darwin)
+    sqlite3 (2.10.2-x86_64-linux-gnu)
     sshkit (1.25.1)
       base64
       logger
@@ -79,7 +81,9 @@ GEM
     tilt (2.0.11)
 
 PLATFORMS
+  arm64-darwin
   ruby
+  x86_64-linux-gnu
 
 DEPENDENCIES
   capistrano (~> 3.19.2)
