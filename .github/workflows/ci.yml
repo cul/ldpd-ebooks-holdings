@@ -6,14 +6,14 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         ruby-version: ['3.3']
     env:
       RACK_ENV: test
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - name: Install tinycdb
         run: sudo apt-get install -y tinycdb libcdb-dev
       - name: Add --no-document option to .gemrc file to speed up bundle install
