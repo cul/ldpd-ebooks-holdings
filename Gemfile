@@ -5,7 +5,7 @@ gem "rack"
 gem "rack-env"
 gem "rake"
 gem "sinatra"
-gem "sqlite3", '~> 2.9'
+gem "sqlite3", '~> 2.4.1'
 group :development do
   gem 'capistrano', '~> 3.19.2', require: false
   gem 'capistrano-cul', require: false
