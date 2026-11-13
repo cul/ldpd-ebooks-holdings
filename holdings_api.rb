@@ -1,5 +1,6 @@
 require 'libcdb'
 require 'json'
+require 'fileutils'
 require 'sinatra'
 
 class HoldingsApi < Sinatra::Base
