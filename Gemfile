@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 gem "libcdb-ruby"
+gem "csv"
 gem "rack"
 gem "rack-env"
 gem "rake"
